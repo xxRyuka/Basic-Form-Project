@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model Product
+<div class="container row justify-content-center mx-auto">
+    <div class=" col-8 ">
+
+        <div asp-validation-summary="All"></div>
+
+        <form asp-controller="Home" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  float-end @(@ViewBag.isValid)  text-light rounded-pill  fst-italic"
+                    asp-validation-for="Name"></span>
+
+                <label class="form-label" asp-for="Name"></label>
+                <input class="form-control" asp-for="Name">
+            </div>
+
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  my-3 float-end  @(@ViewBag.isValid) text-light rounded-pill  fst-italic"
+                    asp-validation-for="Price"></span>
+
+                <label class="form-label" asp-for="Price"></label>
+                <input class="form-control" asp-for="Price">
+            </div>
+
+
+            <div class="mb-3 ">
+                <label class="form-label" afor="Image"></label>
+                <input class="form-control" type="file" name="imgFile" id="imgFile" >
+            </div>
+
+
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  my-2 float-end  @(@ViewBag.isValid) text-light rounded-pill  fst-italic"
+                    asp-validation-for="CategoryID"></span>
+
+                <label class="form-label" asp-for="CategoryID">Kategori</label>
+                <select class="form-select" asp-for="CategoryID" asp-items="ViewBag.Categories">
+                    <option value="">Category</option>
+                </select>
+            </div>
+
+            <div class="mb-3 ">
+                <input asp-for="IsActive">
+                <label class="form-label" asp-for="IsActive"></label>
+            </div>
+
+            <button class="btn btn-warning" type="submit">Create</button>
+        </form>
+    </div>
+</div>

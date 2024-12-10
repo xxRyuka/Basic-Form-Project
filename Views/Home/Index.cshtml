@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ProductViewModel
+
+<div>
+    <h5 class="badge bg-info">
+        Filter
+    </h5>
+    <form method="get" asp-action="index">
+        <select class="form-select form-control my-3" name="category" 
+          asp-items="@(new SelectList(items:Model.Categories,"CategoryID","NameCategory" ,Model.SelectedCategory))">
+            <option value="">All</option>
+        </select>
+
+        <button type="submit" class="btn btn-outline-light form-check ">Filter</button>
+    </form>
+
+    @section Scripts{
+        <script>
+            console.log("Here "+"(@Model.SelectedCategory)")
+        </script>
+    }
+    
+</div>
+
+<div class="text-white">
+    <table class="table text-warning table-hover  table-striped rounded-3">
+        <thead class="text-center rounded-3">
+            <th style="width: 5px; ">@Html.DisplayNameFor(m => m.Products.First().ProductID)</th>
+            <th style="width: 5px;">@Html.DisplayNameFor(m => m.Products.First().Name)</th>
+            <th style="width: 100px;" >@Html.DisplayNameFor(m => m.Products.First().Price)</th>
+            <th style="width: 100px;">@Html.DisplayNameFor(m => m.Products.First().Image)</th>        
+            <th style="width: 1px;"></th>        
+        </thead>
+        <tbody>
+            @foreach(var item in Model.Products){
+            <tr class="text-white text-center fs-4 fw-bold  align-middle ">
+                <td >@item.ProductID</td>
+                <td >@item.Name</td>
+                <td>@item.Price</td>
+                <td><img src="~/img/@item.Image" style="width: 80px ; ;" class="img-fluid" alt="~/img/@item.Image"></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductID" class="fs-6 fw-bold btn btn-info">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProductID" class="fs-6 fw-bold btn btn-danger">Delete</a>
+                        
+                </td>
+            </tr>
+}    
+        </tbody>
+    </table>
+@{
+    if(!String.IsNullOrEmpty(ViewBag.sea)){
+
+
+                <a asp-action="index" class="badge text-decoration-none bg-danger"> &lt; </a>
+    }
+}
+
+</div>
+
+
+
+

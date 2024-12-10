@@ -1,0 +1,11 @@
+@model Product
+
+<div>
+   @Model.Name silcen ?
+</div>
+
+<form action="" method="post">
+    <input type="hidden" asp-for="@Model.ProductID">
+    <button asp-action="Delete" type="submit">Evet</button>
+    <a asp-action="index">Yok</a    >
+</form>

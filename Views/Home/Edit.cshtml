@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model Product
+<div class="container row justify-content-center mx-auto">
+    <div class=" col-8 ">
+
+        <div asp-validation-summary="All"></div>
+
+        <form asp-controller="Home" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="ProductID">
+
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  float-end @(@ViewBag.isValid)  text-light rounded-pill  fst-italic"
+                    asp-validation-for="Name"></span>
+
+                <label class="form-label" asp-for="Name"></label>
+                <input class="form-control" asp-for="Name">
+            </div>
+
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  my-3 float-end  @(@ViewBag.isValid) text-light rounded-pill  fst-italic"
+                    asp-validation-for="Price"></span>
+
+                <label class="form-label" asp-for="Price"></label>
+                <input class="form-control" asp-for="Price">
+            </div>
+
+            <div class="row align-middle align-items-center mb-3">
+
+                <div class="col-2 ">
+                    
+                    <img src="~/img/@Model.Image" width="80px" class="rounded-3" alt="sa" id="PreviewIMG">
+                </div>
+                <div class="mb-3 col-10">
+                    <label class="form-label" afor="Image"></label>
+                    <input class="form-control" type="file" name="imgFile" id="imgFile">
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="@Model.Image">
+
+            <div class="mb-3 ">
+                <span style="font-size: 12px;"
+                    class="bagde p-1  my-2 float-end  @(@ViewBag.isValid) text-light rounded-pill  fst-italic"
+                    asp-validation-for="CategoryID"></span>
+
+                <label class="form-label" asp-for="CategoryID">Kategori</label>
+                <select class="form-select" asp-for="CategoryID" asp-items="ViewBag.Categories">
+                    <option value="">Category</option>
+                </select>
+            </div>
+
+            <div class="mb-3 ">
+                <input asp-for="IsActive">
+                <label class="form-label" asp-for="IsActive"></label>
+            </div>
+
+            <button class="btn btn-warning" type="submit">Create</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+
+<script src="~/js/img.js"> </script>
+
+}
